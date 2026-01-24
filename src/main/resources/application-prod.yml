@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${PROD_DATABASE_URL}
+    username: ${PROD_DATABASE_USERNAME}
+    password: ${PROD_DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+server:
+  port: ${SERVER_PORT}
