@@ -2,33 +2,36 @@ package com.Caliente.api.service.Impl;
 
 import com.Caliente.api.dto.request.PlaylistRequest;
 import com.Caliente.api.dto.response.PlaylistResponse;
+import com.Caliente.api.entity.Playlist;
+import com.Caliente.api.mapper.PlaylistMapper;
+import com.Caliente.api.repository.PlaylistRepository;
 import com.Caliente.api.service.PlaylistService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
-    @Override
+    private final PlaylistRepository playlistRepository;
+    private final PlaylistMapper playlistMapper;
+
     public List<PlaylistResponse> getAllPlaylists() {
-        return List.of();
+        List<Playlist> playlists = playlistRepository.findAll();
+        return playlistMapper.toResponseList(playlists);
     }
 
-    @Override
     public PlaylistResponse getPlaylistById(Long id) {
-        return null;
+        Playlist playlist = playlistRepository.findById(id).orElseThrow();
+        return playlistMapper.toResponse(playlist);
     }
 
-    @Override
     public PlaylistResponse createPlaylist(PlaylistRequest req) {
-        return null;
+        Playlist playlist = playlistMapper.toEntity(req);
+        return playlistMapper.toResponse(playlistRepository.save(playlist));
     }
 
-    @Override
-    public PlaylistResponse updatePlaylist(PlaylistRequest req) {
-        return null;
-    }
-
-    @Override
     public void deletePlaylist(Long id) {
-
+        playlistRepository.deleteById(id);
     }
 }

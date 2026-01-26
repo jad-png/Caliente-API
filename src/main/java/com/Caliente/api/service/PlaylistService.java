@@ -9,6 +9,5 @@ public interface PlaylistService {
     List<PlaylistResponse> getAllPlaylists();
     PlaylistResponse getPlaylistById(Long id);
     PlaylistResponse createPlaylist(PlaylistRequest req);
-    PlaylistResponse updatePlaylist(PlaylistRequest req);
     void deletePlaylist(Long id);
 }

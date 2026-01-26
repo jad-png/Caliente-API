@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public interface SongService {
     List<SongResponse> getAllSongs();
-    Optional<SongResponse> getSongById(Long id);
+    SongResponse getSongById(Long id);
     SongResponse createSong(SongRequest req);
-    SongResponse updateSong(SongRequest req);
+    SongResponse updateSong(Long id, SongRequest req);
     void deleteSong(Long id);
 }

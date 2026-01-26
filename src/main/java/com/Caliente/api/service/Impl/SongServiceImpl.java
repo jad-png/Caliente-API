@@ -27,9 +27,9 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Optional<SongResponse> getSongById(Long id) {
+    public SongResponse getSongById(Long id) {
         Song song = songRepo.findById(id).orElseThrow();
-        return Optional.ofNullable(mapper.toResponse(song));
+        return mapper.toResponse(song);
     }
 
     @Override
@@ -44,12 +44,20 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public SongResponse updateSong(SongRequest req) {
-        return null;
+    public SongResponse updateSong(Long id, SongRequest req) {
+        Song song = songRepo.findById(id).orElseThrow();
+        mapper.updateEntityFromRequest(req, song);
+        if(req.getPlaylistId() != null) {
+            song.setPlaylist(playlistRepo.getReferenceById(req.getPlaylistId()));
+        }
+
+        Song saved = songRepo.save(song);
+
+        return mapper.toResponse(saved);
     }
 
     @Override
     public void deleteSong(Long id) {
-
+        songRepo.deleteById(id);
     }
 }
