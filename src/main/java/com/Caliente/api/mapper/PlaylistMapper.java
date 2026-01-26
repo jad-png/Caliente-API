@@ -5,8 +5,13 @@ import com.Caliente.api.dto.response.PlaylistResponse;
 import com.Caliente.api.entity.Playlist;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", uses = {SongMapper.class})
 public interface PlaylistMapper {
     PlaylistResponse toResponse(Playlist playlist);
+
+    List<PlaylistResponse> toResponseList(List<Playlist> playlists);
+
     Playlist toEntity(PlaylistRequest request);
 }
