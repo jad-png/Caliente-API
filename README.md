@@ -82,20 +82,3 @@
  ## CI
 
  A GitHub Actions workflow is located at `.github/workflows/maven.yml` and runs `mvn -B clean verify` on pull requests and pushes to `main`/`master`.
-
- ## Swagger / API Docs
-
- SpringDoc is included and exposes the Swagger UI at `/swagger-ui.html`. Controllers will be auto-documented; adding `@Operation` and `@Tag` annotations improves readability.
-
- ## Notes & Next Steps
-
- - Add migrations with Flyway or Liquibase for production schema management.
- - Add health/readiness endpoints and container probes.
- - Add example API requests in the README (I can add Postman collection or curl examples if you want).
-
- ## Contact
-
- If you want, I can:
- - Add example requests and responses to this README.
- - Add Flyway and sample migration scripts.
- - Annotate controllers with OpenAPI descriptions for nicer docs.
