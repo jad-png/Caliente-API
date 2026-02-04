@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: ${PROD_DATABASE_URL}
-    username: ${PROD_DATABASE_USERNAME}
-    password: ${PROD_DATABASE_PASSWORD}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:caliente_prod_db}
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
 
   jpa:
     hibernate:
@@ -13,4 +14,4 @@ spring:
         format_sql: false
 
 server:
-  port: ${SERVER_PORT}
+  port: ${SERVER_PORT:8080}
